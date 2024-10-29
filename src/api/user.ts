@@ -5,20 +5,23 @@ const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
-export const fetchUser = async (filters: {
+export const fetchUser = async ({
+  gender,
+  nationalities,
+}: {
   gender: string[];
   nationalities: string[];
 }): Promise<User> => {
-  let url = "/";
+  const params = new URLSearchParams();
 
-  if (filters?.gender.length === 1) {
-    url += "?gender=" + filters?.gender[0];
+  if (gender.length === 1) {
+    params.append("gender", gender[0]);
   }
 
-  if (filters?.nationalities.length) {
-    const nationalitiesString = filters.nationalities.join(",");
-    url += (url.includes("?") ? "&" : "?") + "nat=" + nationalitiesString;
+  if (nationalities.length) {
+    params.append("nat", nationalities.join(","));
   }
-  const { data } = await axiosClient.get(url);
+
+  const { data } = await axiosClient.get(`/?${params.toString()}`);
   return data;
 };
