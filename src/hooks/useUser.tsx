@@ -3,7 +3,8 @@ import { fetchUser } from "../api/user";
 
 export const useUser = () => {
   const fetchUserMutation = useMutation({
-    mutationFn: () => fetchUser(),
+    mutationFn: (filters: { gender: string[]; nationalities: string[] }) =>
+      fetchUser(filters),
   });
 
   return fetchUserMutation;

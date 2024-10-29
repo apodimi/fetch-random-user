@@ -4,14 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "button-primary": "#1D4ED8",
-        "button-secondary": "#D97706",
+        "button-primary": "#000",
+        "button-primary-hover": "#333",
       },
-      borderRadius: {
-        button: "0.375rem",
-      },
-      padding: {
-        button: "0.5rem 1rem",
+      backgroundImage: {
+        "custom-radial": "radial-gradient(#000000 0.5px, #ffffff 0.5px)",
       },
     },
   },
